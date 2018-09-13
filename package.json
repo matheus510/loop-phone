@@ -4,7 +4,9 @@
   "description": "simple mobile phone models API",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "babel-node": "babel-node",
+    "dev": "nodemon --exec npm run babel-node -- index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,13 @@
   },
   "homepage": "https://github.com/matheus510/loop-phone#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "mongoose": "^5.2.14"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }

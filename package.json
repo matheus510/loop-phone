@@ -1,0 +1,23 @@
+{
+  "name": "loop-phone",
+  "version": "1.0.0",
+  "description": "simple mobile phone models API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheus510/loop-phone.git"
+  },
+  "author": "Matheus de Sousa Monteiro Fonseca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheus510/loop-phone/issues"
+  },
+  "homepage": "https://github.com/matheus510/loop-phone#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.14"
+  }
+}

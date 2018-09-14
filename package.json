@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/matheus510/loop-phone#readme",
   "dependencies": {
+    "chalk": "^2.4.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongoose": "^5.2.14"
+    "mongoose": "^5.2.14",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.0.0",

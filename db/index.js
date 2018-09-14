@@ -1,5 +1,5 @@
 // require mongoose module
-import { connect, connection } from 'mongoose'
+import mongoose from 'mongoose'
 
 // require chalk module to give colors to console text
 import { bold } from 'chalk'
@@ -14,22 +14,22 @@ const disconnected = bold.red
 const termination = bold.magenta
 
 export default () => {
-  connect(dbURI)
+  mongoose.connect(dbURI, { useNewUrlParser: true })
 
-  connection.on('connected', () => {
+  mongoose.connection.on('connected', () => {
     console.log(connected('Mongoose connection with db stabilished'))
   })
 
-  connection.on('error', (err) => {
+  mongoose.connection.on('error', (err) => {
     console.log(error('Mongoose connection has occured ' + err + ' error'))
   })
 
-  connection.on('disconnected', () => {
+  mongoose.connection.on('disconnected', () => {
     console.log(disconnected('Mongoose connection is disconnected'))
   })
 
   process.on('SIGINT', () => {
-    connection.close(() => {
+    mongoose.connection.close(() => {
       console.log(termination('Mongoose connection is disconnected due to application termination'))
       process.exit(0)
     })

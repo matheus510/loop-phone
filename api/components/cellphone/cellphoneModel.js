@@ -33,6 +33,6 @@ const cellphoneSchema = new Schema({
   }
 })
 
-const model = mongoose.model('cellphone', cellphoneSchema)
+const cellphoneModel = mongoose.model('cellphone', cellphoneSchema)
 
-export default model
+export default cellphoneModel

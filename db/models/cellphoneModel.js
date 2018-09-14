@@ -17,7 +17,7 @@ const cellphoneSchema = new Schema({
   },
   description: {
     type: String,
-    required: false,
+    required: false
   },
   sold: {
     type: Boolean,

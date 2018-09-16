@@ -6,9 +6,8 @@ let cellphoneController = {}
 // Get -- retrieve all cellphone
 // No params required
 cellphoneController.getAll = (req, res) => {
-  console.log('controller')
-  Promise.resolve(cellphoneDAL.get()).then((result) => {
-    res.send(200, result)
+  return Promise.resolve(cellphoneDAL.get()).then((result) => {
+    res.status(200).send(result)
   })
 }
 
@@ -17,10 +16,10 @@ cellphoneController.getAll = (req, res) => {
 cellphoneController.getByParam = (req, res) => {
   if (req.params.q) {
     Promise.resolve(cellphoneDAL.get(req.params)).then((result) => {
-      res.send(200, result)
+      res.status(200).send(result)
     })
   } else {
-    res.send(400, 'Invalid Parameter')
+    res.status(400).send('Invalid Parameter')
   }
 }
 
@@ -29,10 +28,10 @@ cellphoneController.getByParam = (req, res) => {
 cellphoneController.getById = (req, res) => {
   if (req.params.id) {
     Promise.resolve(cellphoneDAL.get(req.params)).then((result) => {
-      res.send(200, result)
+      res.status(200).send(result)
     })
   } else {
-    res.send(400, 'Invalid Id')
+    res.status(400).send('Invalid Id')
   }
 }
 
@@ -44,20 +43,30 @@ cellphoneController.getById = (req, res) => {
 //  year: '',
 //  description: 'optional'
 // }
-
 cellphoneController.create = (req, res) => {
-
-}
-
-// Put -- edit a existing cellphone completely (replace object)
-// parameter: /id/:id
-cellphoneController.update = (req, res) => {
-
+  if (req.body) {
+    console.log('passou')
+    Promise.resolve(cellphoneDAL.post(req.body)).then((result) => {
+      res.status(200).send(result)
+    })
+  } else {
+    res.status(400).send('No cellphone informed')
+  }
 }
 
 // Patch -- edit a existing cellphone partially (only updated properties)
 // parameter: /id/:id
-cellphoneController.edit = (req, res) => {
+cellphoneController.update = (req, res) => {
+  let cellphoneUpdate = req.body
+  let cellphoneId = req.params.id
+  return Promise.resolve(cellphoneDAL.patch(cellphoneId, cellphoneUpdate)).then((result) => {
+    res.status(200).send(result)
+  })
+}
+
+// Put -- edit a existing cellphone completely (replace object)
+// parameter: /id/:id
+cellphoneController.replace = (req, res) => {
 
 }
 

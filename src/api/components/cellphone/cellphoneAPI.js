@@ -11,9 +11,9 @@ cellphoneRouter.get('/id/:id', cellphoneController.getById)
 
 cellphoneRouter.post('/', cellphoneController.create)
 
-cellphoneRouter.patch('/id/:id', cellphoneController.edit)
+cellphoneRouter.patch('/id/:id', cellphoneController.update)
 
-cellphoneRouter.put('/id/:id', cellphoneController.update)
+cellphoneRouter.put('/id/:id', cellphoneController.replace)
 
 cellphoneRouter.delete('/id/:id', cellphoneController.delete)
 

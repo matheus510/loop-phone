@@ -13,7 +13,7 @@ const error = bold.yellow
 const disconnected = bold.red
 const termination = bold.magenta
 
-export default () => {
+let dbConnection = () => {
   mongoose.connect(dbURI, { useNewUrlParser: true })
 
   mongoose.connection.on('connected', () => {
@@ -35,3 +35,5 @@ export default () => {
     })
   })
 }
+
+export default dbConnection

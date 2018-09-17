@@ -4,7 +4,7 @@ let cellphoneDAL = {}
 
 cellphoneDAL.get = (payload) => {
   if (!payload) {
-    return cellphoneModel.find({},(err, result) => {
+    return cellphoneModel.find({}, (err, result) => {
       if (err) console.log(err)
 
       let response = result || 'No cellphone found'
@@ -12,14 +12,14 @@ cellphoneDAL.get = (payload) => {
       return response
     })
   } else if (payload.q) {
-    return cellphoneModel.find(payload.q,(err, result) => {
+    return cellphoneModel.find(payload.q, (err, result) => {
       if (err) throw new Error(err)
 
       return result
     })
   }
   if (payload.id) {
-    return cellphoneModel.findById(payload.id,(err, result) => {
+    return cellphoneModel.findById(payload.id, (err, result) => {
       if (err) console.log(err)
 
       return result
@@ -46,17 +46,40 @@ cellphoneDAL.patch = (cellphoneId, cellphoneUpdate) => {
     Object.keys(cellphoneUpdate).map((attribute) => {
       document[attribute] = cellphoneUpdate[attribute]
     })
-    document.save((updatedDocument) => {
+    document.save((previousDocument, updatedDocument) => {
       return updatedDocument
     })
   })
 }
 
-cellphoneDAL.put = (payload) => {
-  return cellphoneModel.replace(payload, (err, replacedDocument) => {
+cellphoneDAL.put = (cellphoneId, cellphoneReplace) => {
+  return cellphoneModel.findById(cellphoneId, (err, document) => {
     if (err) return console.log(err)
 
-    return replacedDocument
+    let attributeList = Object.keys(cellphoneReplace)
+    
+    for (let i = 0, iLen = attributeList.length; i < iLen; i++) {
+      let currentAttribute = attributeList[i]
+      let validAttribute = (currentAttribute && currentAttribute !== '_id' && currentAttribute !== 'created' && currentAttribute !== 'updated' && currentAttribute !== 'sold' && currentAttribute !== '_v')
+      
+      if (validAttribute) {
+        
+        document[currentAttribute] = cellphoneReplace[currentAttribute]
+        
+      } else {
+        return {
+          err: err,
+          updatedDocument: false
+        }
+      }
+    }
+    return document.updateOne(cellphoneReplace, {runValidators: true}, (err, updatedDocument) => {
+      let responseObj = {
+        err: err,
+        updatedDocument: updatedDocument
+      }
+      return responseObj
+    })
   })
 }
 

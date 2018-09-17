@@ -7,7 +7,7 @@
     "test": "test",
     "babel-node": "babel-node",
     "build": "webpack-cli --progress --config webpack.config.js",
-    "dev": "standard && nodemon --exec npm run babel-node -- ./src/index.js",
+    "dev": "standard --verbose && nodemon --exec npm run babel-node -- ./src/index.js",
     "start": "node ./dist/main.js"
   },
   "repository": {

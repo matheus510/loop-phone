@@ -6,7 +6,7 @@ let cellphoneController = {}
 // Get -- retrieve all cellphone
 // No params required
 cellphoneController.getAll = (req, res) => {
-  return Promise.resolve(cellphoneDAL.get()).then((result) => {
+  Promise.resolve(cellphoneDAL.get()).then((result) => {
     res.status(200).send(result)
   })
 }
@@ -45,7 +45,6 @@ cellphoneController.getById = (req, res) => {
 // }
 cellphoneController.create = (req, res) => {
   if (req.body) {
-    console.log('passou')
     Promise.resolve(cellphoneDAL.post(req.body)).then((result) => {
       res.status(200).send(result)
     })
@@ -59,7 +58,7 @@ cellphoneController.create = (req, res) => {
 cellphoneController.update = (req, res) => {
   let cellphoneUpdate = req.body
   let cellphoneId = req.params.id
-  return Promise.resolve(cellphoneDAL.patch(cellphoneId, cellphoneUpdate)).then((result) => {
+  Promise.resolve(cellphoneDAL.patch(cellphoneId, cellphoneUpdate)).then((result) => {
     res.status(200).send(result)
   })
 }
@@ -67,7 +66,15 @@ cellphoneController.update = (req, res) => {
 // Put -- edit a existing cellphone completely (replace object)
 // parameter: /id/:id
 cellphoneController.replace = (req, res) => {
-
+  let cellphoneUpdate = req.body
+  let cellphoneId = req.params.id
+  Promise.resolve(cellphoneDAL.put(cellphoneId, cellphoneUpdate)).then((result) => {
+    if (result.err) {
+      res.status(400).send('Could not replace cellphone.' + result.err)
+    } else {
+      res.status(200).send(result.updatedDocument)
+    }
+  })
 }
 
 // Delete -- remove a cellphone

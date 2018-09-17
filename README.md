@@ -54,3 +54,5 @@ To run the development enviroment (nodemon && babel):
 ```sh
 $ npm run dev
 ```
+
+Webpack and Docker are to be implemented.

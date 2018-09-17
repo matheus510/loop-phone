@@ -6,8 +6,8 @@
   "scripts": {
     "test": "test",
     "babel-node": "babel-node",
+    "dev": "nodemon --exec npm run babel-node -- ./src/index.js",
     "build": "webpack-cli --progress --config webpack.config.js",
-    "dev": "standard --verbose && nodemon --exec npm run babel-node -- ./src/index.js",
     "start": "node ./dist/main.js"
   },
   "repository": {

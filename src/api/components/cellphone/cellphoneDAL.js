@@ -57,15 +57,13 @@ cellphoneDAL.put = (cellphoneId, cellphoneReplace) => {
     if (err) return console.log(err)
 
     let attributeList = Object.keys(cellphoneReplace)
-    
+
     for (let i = 0, iLen = attributeList.length; i < iLen; i++) {
       let currentAttribute = attributeList[i]
       let validAttribute = (currentAttribute && currentAttribute !== '_id' && currentAttribute !== 'created' && currentAttribute !== 'updated' && currentAttribute !== 'sold' && currentAttribute !== '_v')
-      
+
       if (validAttribute) {
-        
         document[currentAttribute] = cellphoneReplace[currentAttribute]
-        
       } else {
         return {
           err: err,
@@ -83,8 +81,8 @@ cellphoneDAL.put = (cellphoneId, cellphoneReplace) => {
   })
 }
 
-cellphoneDAL.delete = (payload) => {
-  return cellphoneModel.delete(payload, (err, deletedSuccessfully) => {
+cellphoneDAL.delete = (cellphoneId) => {
+  return cellphoneModel.deleteOne({_id: cellphoneId}, (err, deletedSuccessfully) => {
     if (err) return console.log(err)
 
     return deletedSuccessfully

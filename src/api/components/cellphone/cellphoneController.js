@@ -80,7 +80,10 @@ cellphoneController.replace = (req, res) => {
 // Delete -- remove a cellphone
 // parameter: /id/:id
 cellphoneController.delete = (req, res) => {
-
+  let cellphoneId = req.params.id
+  Promise.resolve(cellphoneDAL.delete(cellphoneId)).then((result) => {
+    res.status(200).send(result.updatedDocument)
+  })
 }
 
 export default cellphoneController

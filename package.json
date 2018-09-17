@@ -7,8 +7,8 @@
     "test": "test",
     "babel-node": "babel-node",
     "dev": "nodemon --exec npm run babel-node -- ./src/index.js",
-    "build": "webpack-cli --progress --config webpack.config.js",
-    "start": "node ./dist/main.js"
+    "build": "webpack --optimize-minimize --progress --config webpack.config.js",
+    "start": "babel-node ./dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,10 @@
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongoose": "^5.2.14",
-    "morgan": "^1.9.1"
+    "mongodb": "^3.1.6",
+    "mongoose": "git+https://git@github.com/PleaseDotCom/mongoose.git",
+    "morgan": "^1.9.1",
+    "string-replace-webpack-plugin": "^0.1.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.0.0",

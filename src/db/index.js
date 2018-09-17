@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 import { bold } from 'chalk'
 
 // require database credentials file
-import credentials from '../credentials'
+import credentials from '../../credentials'
 
 const dbURI = `mongodb://${credentials.username}:${credentials.password}@ds155252.mlab.com:55252/loop-phone`
 const connected = bold.cyan

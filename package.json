@@ -25,7 +25,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "mongodb": "^3.1.6",
-    "mongoose": "git+https://git@github.com/PleaseDotCom/mongoose.git",
+    "mongoose": "^5.2.15",
     "morgan": "^1.9.1",
     "string-replace-webpack-plugin": "^0.1.3"
   },
